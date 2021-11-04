@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Demostrador de autenticación contra un servidor CAS
+{% endblock %}
+
+{% block content %}
+	<div class="warning">
+        <img src="{{ url_for('static', filename='warning.svg') }}" class="warning__icon" />
+        <div class="warning__content">
+            <h2>Bienvenido de nuevo</h2>
+        </div>
+    </div>
+    <div class="form_wrapper">
+    {% if ticket %}
+        <p>Veo que has regresado con un ticket en la URL. ¡Bien!</p>
+        <h3><code>{{ ticket }}</code></h3>
+        <p>Si el ticket es válido lo podrás canjear en el servidor por
+            información sobre tu usuario. Sigue el siguiente enlace tú mismo
+        </p>
+        <p><a href="{{ verification_url }}">{{verification_url}}</a></p>
+
+        <a class="read-more-btn" href="{{ login_url }}">LOGIN with CAS <svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.76 8.25"><defs><style>.arc-1{fill:none;stroke:#515962;stroke-miterlimit:10;stroke-width:0.25px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><line class="arc-1" y1="4.12" x2="12.14" y2="4.12"></line><polyline class="arc-1" points="10.93 2.92 12.14 4.13 10.93 5.33"></polyline><path class="arc-1 circle-path" d="M7.81,1.3A4,4,0,1,1,7.81,7"></path></g></g></svg></a>
+    {% else %}
+        <p>Aquí no se puede venir sin un ticket. Para obtener uno sigue las
+            instrucciones de la página principal</p>
+        <a class="read-more-btn" href="{{ url_for('index') }}">Ir a la página
+            principal <svg
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.76 8.25"><defs><style>.arc-1{fill:none;stroke:#515962;stroke-miterlimit:10;stroke-width:0.25px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><line class="arc-1" y1="4.12" x2="12.14" y2="4.12"></line><polyline class="arc-1" points="10.93 2.92 12.14 4.13 10.93 5.33"></polyline><path class="arc-1 circle-path" d="M7.81,1.3A4,4,0,1,1,7.81,7"></path></g></g></svg></a>
+
+    {% endif %}
+    </div>
+{% endblock content %}

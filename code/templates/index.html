@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Demostrador de autenticación contra un servidor CAS
+{% endblock %}
+
+{% block content %}
+    <div class="warning">
+        <img src="{{ url_for('static', filename='warning.svg') }}"
+                class="warning__icon"/>
+        <div class="warning__content">
+            <h2>Aplicación demostrative del uso de CAS para autenticación</h2>
+        </div>
+    </div>
+    <div class="form_wrapper">
+        <p>El siguiente enlace llevará al usuario a la pantalla de login del
+            servidor CAS. La URL de ese enlace contiene el parámetro
+            <code>service</code> que a su vez contiene la URL a la que debe
+            regresar si el usuario consigue autenticarse con éxito. En este
+            ejemplo, esa URL es la URL de esta misma aplicación,
+            concretamente a la ruta <code>/verify</code>. Cuando el usuario
+            regrese a esta URL, llevará como parámetro un ticket. La
+            aplicación tomará ese ticket y lo canjeará en el servidor CAS. Si
+            el ticket es válido, el servidor CAS nos responderá con
+            información sobre el usuario. A partir de ese punto ya podemos
+            considerar al usuario como legítimo.
+        </p>
+
+        <h3><code>{{ login_url }}</code></h3>
+        <a class="read-more-btn" href="{{ login_url }}">LOGIN with CAS
+            <svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.76 8.25">
+                <defs>
+                    <style>.arc-1 {
+                        fill: none;
+                        stroke: #515962;
+                        stroke-miterlimit: 10;
+                        stroke-width: 0.25px;
+                    }</style>
+                </defs>
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                        <line class="arc-1" y1="4.12" x2="12.14" y2="4.12"></line>
+                        <polyline class="arc-1" points="10.93 2.92 12.14 4.13 10.93 5.33"></polyline>
+                        <path class="arc-1 circle-path" d="M7.81,1.3A4,4,0,1,1,7.81,7"></path>
+                    </g>
+                </g>
+            </svg>
+        </a>
+    </div>
+{% endblock content %}

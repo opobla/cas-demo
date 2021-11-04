@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CAS demo</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon-transparent.png') }}" sizes="32x32" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <section class="content">
+            <img src="{{ url_for('static', filename='logo-makingscience-2x.png')
+                    }}" class="logo" />
+            {% block content %}{% endblock %}
+        </section>
+    </body>
+</html>
+
